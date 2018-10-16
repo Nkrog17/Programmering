@@ -1,9 +1,10 @@
 import java.util.Scanner;
 import java.io.*;
 
-public class Menu  {
+public class Menu extends Client  {
 	Scanner sc1 = new Scanner (System.in);
-	
+	public int i = 0;
+
 	void startGame() {
 		
 		System.out.println("Hello");
@@ -25,5 +26,12 @@ public class Menu  {
 			}
 	}
 
+	void lobbyReady() {
+		if(sc1.next().equals("ready")) {
+			System.out.println("You are ready.");
+			i = 1;
+			
+		}
+	}
 	
 }

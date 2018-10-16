@@ -9,8 +9,9 @@ public class Client {
 		Menu menu1 = new Menu();
 		
 		try {
+		
+			Socket socket = new Socket("192.168.43.193", 8800);
 			
-			Socket socket = new Socket("192.168.43.193", 7000);
 			DataInputStream fromServer = new DataInputStream(socket.getInputStream());
 			DataOutputStream toServer = new DataOutputStream(socket.getOutputStream());
 
@@ -23,11 +24,13 @@ public class Client {
 				String playerName = sc.next();
 				//Sends client name to the server
 				toServer.writeUTF(playerName);
-				//emString sPlayerName = fromServer.readUTF();
-				System.out.println(fromServer.readUTF());
-				//
-				menu1.startGame();
 				
+				System.out.println(fromServer.readUTF());
+			
+				//Checks if client is ready				
+				menu1.lobbyReady();
+				toServer.writeInt(menu1.i);
+				System.out.println(fromServer.readUTF());
 				//Quit game function	
 				menu1.quitMenu();
 			}
