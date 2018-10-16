@@ -2,18 +2,20 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.io.*;
 public class Client {
+	public static boolean run = true;
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
-	
+		Menu menu1 = new Menu();
+		
 		try {
 			
 			Socket socket = new Socket("192.168.43.193", 7000);
 			DataInputStream fromServer = new DataInputStream(socket.getInputStream());
 			DataOutputStream toServer = new DataOutputStream(socket.getOutputStream());
 
-			while(true) {
-				System.out.println("Welcome to the Lobby");
+			while(run) {
+				System.out.println(fromServer.readUTF());
 				//FROMSERVER INTRO PRINT HER
 				
 				//Client name from user input
@@ -22,21 +24,12 @@ public class Client {
 				//Sends client name to the server
 				toServer.writeUTF(playerName);
 				//emString sPlayerName = fromServer.readUTF();
-				System.out.println(playerName+" has joined the Lobby");
-		
-				
-				
+				System.out.println(fromServer.readUTF());
+				//
+				menu1.startGame();
 				
 				//Quit game function	
-				if(sc.next().equals("quit")) {
-				System.out.println("Would like to quit the menu, type 'quit'");
-				
-				String clientAnswer = sc.next();
-				if(clientAnswer.equals("quit")) {
-					System.out.println("You have left the lobby");
-					break;		
-					}
-				}
+				menu1.quitMenu();
 			}
 			
 			
