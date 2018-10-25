@@ -7,23 +7,33 @@ public class Client {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
+		//System.out.println("Type the IP of the server you want to connect to: ");
+		String IP = "127.0.0.1"; //sc.next();
+		//System.out.println("Type the port of the server you want to connect to: ");
+		int port = 6000;//sc.nextInt();
+		
+		
 		try {
 		
-			Socket socket = new Socket("192.168.43.193", 8800);
+			Socket socket = new Socket(IP, port);
 			
 			DataInputStream fromServer = new DataInputStream(socket.getInputStream());
 			DataOutputStream toServer = new DataOutputStream(socket.getOutputStream());
 			
 			System.out.println("What would you like to call yourself:");
-			String username = sc.next();
+			String username = sc.nextLine();
 			toServer.writeUTF(username);
+			System.out.print("> ");
 
 			new Thread( () -> {
 				while (true) {
 					try {
 						System.out.println(fromServer.readUTF());
+						System.out.print("> ");
+						//System.out.println("");
 					} catch (IOException e) {
 						e.printStackTrace();
+						break;
 					}
 				}
 			}).start();
@@ -31,18 +41,18 @@ public class Client {
 			new Thread( () -> {
 				while (true) {
 					try {
-						System.out.println("> ");
-						String message = sc.next();
+						String message = sc.nextLine();
+						
 						toServer.writeUTF(message);
 					} catch (IOException e) {
 						e.printStackTrace();
+						break;
 					}
 				}
 			}).start();
 			
 			
 		}catch(Exception e){}
-		
 	}
 
 }
