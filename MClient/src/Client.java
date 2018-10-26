@@ -8,7 +8,7 @@ public class Client {
 		Scanner sc = new Scanner(System.in);
 		
 		//System.out.println("Type the IP of the server you want to connect to: ");
-		String IP = "127.0.0.1"; //sc.next();
+		String IP = "172.20.10.8"; //sc.next();
 		//System.out.println("Type the port of the server you want to connect to: ");
 		int port = 6000;//sc.nextInt();
 		
@@ -29,7 +29,10 @@ public class Client {
 				while (true) {
 					try {
 						System.out.println(fromServer.readUTF());
-						System.out.print("> ");
+						if(fromServer.readUTF().equals("b00ejjk")) {
+							System.exit(0);
+						}
+						System.out.print(": ");
 						//System.out.println("");
 					} catch (IOException e) {
 						e.printStackTrace();
