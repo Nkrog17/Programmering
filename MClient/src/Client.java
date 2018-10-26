@@ -8,9 +8,9 @@ public class Client {
 		Scanner sc = new Scanner(System.in);
 		
 		//System.out.println("Type the IP of the server you want to connect to: ");
-		String IP = "172.20.10.2"; //sc.next();
+		String IP = "192.168.43.228"; //sc.next();
 		//System.out.println("Type the port of the server you want to connect to: ");
-		int port = 7700;//sc.nextInt();
+		int port = 5000;//sc.nextInt();
 		
 		
 		try {
@@ -23,16 +23,16 @@ public class Client {
 			System.out.println("What would you like to call yourself:");
 			String username = sc.nextLine();
 			toServer.writeUTF(username);
-			//System.out.print("You: ");
+			System.out.print("> ");
 
 			new Thread( () -> {
 				while (true) {
 					try {
 						System.out.println(fromServer.readUTF());
-						System.out.println("");
+						
 						
 
-						//System.out.print("You: ");
+						System.out.print("> ");
 						//System.out.println("");
 					} catch (IOException e) {
 						e.printStackTrace();
@@ -44,10 +44,7 @@ public class Client {
 			new Thread( () -> {
 				while (true) {
 					try {
-						//System.out.println("");
-						System.out.print("You: ");
-						String message = sc.nextLine();
-						
+						String message = sc.nextLine();						
 						toServer.writeUTF(message);
 						if(message.equals("/quit")) {
 							System.exit(0);
