@@ -10,7 +10,7 @@ public class Client {
 		//The IP of the server you want to connect to
 		String IP = "192.168.43.228";
 		//The port of the server you want to connect to
-		int port = 5000;
+		int port = 6000;
 		
 		
 		try {
