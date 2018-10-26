@@ -7,10 +7,10 @@ public class Client {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
-		//System.out.println("Type the IP of the server you want to connect to: ");
-		String IP = "192.168.43.228"; //sc.next();
-		//System.out.println("Type the port of the server you want to connect to: ");
-		int port = 5000;//sc.nextInt();
+		//The IP of the server you want to connect to
+		String IP = "192.168.43.228";
+		//The port of the server you want to connect to
+		int port = 5000;
 		
 		
 		try {
@@ -33,7 +33,6 @@ public class Client {
 						
 
 						System.out.print("> ");
-						//System.out.println("");
 					} catch (IOException e) {
 						e.printStackTrace();
 						
