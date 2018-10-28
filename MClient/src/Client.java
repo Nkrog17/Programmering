@@ -14,7 +14,8 @@ public class Client {
 		
 		
 		try {
-		
+			
+			//Allocates the IP adress and Port Number to the socket
 			Socket socket = new Socket(IP, port);
 			
 			DataInputStream fromServer = new DataInputStream(socket.getInputStream());
