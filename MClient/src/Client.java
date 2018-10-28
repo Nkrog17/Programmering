@@ -18,14 +18,17 @@ public class Client {
 			//Allocates the IP adress and Port Number to the socket
 			Socket socket = new Socket(IP, port);
 			
+			//Lets the application read and send data through datastreams
 			DataInputStream fromServer = new DataInputStream(socket.getInputStream());
 			DataOutputStream toServer = new DataOutputStream(socket.getOutputStream());
 			
+			// Function that takes in the users input in the console and saves it as the username and sends it to the server
 			System.out.println("What would you like to call yourself:");
 			String username = sc.nextLine();
 			toServer.writeUTF(username);
 			System.out.print("> ");
-
+			
+			// The first thread in the client that takes input from the server
 			new Thread( () -> {
 				while (true) {
 					try {
@@ -41,6 +44,7 @@ public class Client {
 				}
 			}).start();
 			
+			// The second thread in the client that sends input in the console to the server and contains the /quit function that terminates the program 
 			new Thread( () -> {
 				while (true) {
 					try {
